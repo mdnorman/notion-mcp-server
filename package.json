@@ -10,6 +10,7 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "prepare": "npm run build",
     "build": "tsc -build && node scripts/build-cli.js",
     "dev": "tsx watch scripts/start-server.ts",
     "test": "NODE_ENV=test vitest run",
