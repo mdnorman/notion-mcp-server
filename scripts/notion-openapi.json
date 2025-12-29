@@ -255,6 +255,261 @@
           }
         }
       },
+      "titlePropertyValue": {
+        "type": "object",
+        "description": "Title property value for database pages",
+        "properties": {
+          "title": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/richTextRequest"
+            },
+            "maxItems": 100
+          }
+        },
+        "required": ["title"]
+      },
+      "richTextPropertyValue": {
+        "type": "object",
+        "description": "Rich text property value for database pages",
+        "properties": {
+          "rich_text": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/richTextRequest"
+            },
+            "maxItems": 100
+          }
+        },
+        "required": ["rich_text"]
+      },
+      "numberPropertyValue": {
+        "type": "object",
+        "description": "Number property value for database pages",
+        "properties": {
+          "number": {
+            "type": ["number", "null"]
+          }
+        },
+        "required": ["number"]
+      },
+      "selectPropertyValue": {
+        "type": "object",
+        "description": "Select property value for database pages",
+        "properties": {
+          "select": {
+            "type": ["object", "null"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "ID of the select option"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the select option (can be used instead of id)"
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red"]
+              }
+            }
+          }
+        },
+        "required": ["select"]
+      },
+      "multiSelectPropertyValue": {
+        "type": "object",
+        "description": "Multi-select property value for database pages",
+        "properties": {
+          "multi_select": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "ID of the select option"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "Name of the select option (can be used instead of id)"
+                },
+                "color": {
+                  "type": "string",
+                  "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red"]
+                }
+              }
+            }
+          }
+        },
+        "required": ["multi_select"]
+      },
+      "statusPropertyValue": {
+        "type": "object",
+        "description": "Status property value for database pages",
+        "properties": {
+          "status": {
+            "type": ["object", "null"],
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "ID of the status option"
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the status option (can be used instead of id)"
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red"]
+              }
+            }
+          }
+        },
+        "required": ["status"]
+      },
+      "datePropertyValue": {
+        "type": "object",
+        "description": "Date property value for database pages",
+        "properties": {
+          "date": {
+            "type": ["object", "null"],
+            "properties": {
+              "start": {
+                "type": "string",
+                "description": "Start date in ISO 8601 format (YYYY-MM-DD or YYYY-MM-DDTHH:MM:SS.sssZ)"
+              },
+              "end": {
+                "type": ["string", "null"],
+                "description": "End date in ISO 8601 format (optional, for date ranges)"
+              },
+              "time_zone": {
+                "type": ["string", "null"],
+                "description": "Time zone in IANA format (e.g., 'America/New_York')"
+              }
+            },
+            "required": ["start"]
+          }
+        },
+        "required": ["date"]
+      },
+      "peoplePropertyValue": {
+        "type": "object",
+        "description": "People property value for database pages",
+        "properties": {
+          "people": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "User ID"
+                }
+              },
+              "required": ["id"]
+            }
+          }
+        },
+        "required": ["people"]
+      },
+      "checkboxPropertyValue": {
+        "type": "object",
+        "description": "Checkbox property value for database pages",
+        "properties": {
+          "checkbox": {
+            "type": "boolean"
+          }
+        },
+        "required": ["checkbox"]
+      },
+      "urlPropertyValue": {
+        "type": "object",
+        "description": "URL property value for database pages",
+        "properties": {
+          "url": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": ["url"]
+      },
+      "emailPropertyValue": {
+        "type": "object",
+        "description": "Email property value for database pages",
+        "properties": {
+          "email": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": ["email"]
+      },
+      "phonePropertyValue": {
+        "type": "object",
+        "description": "Phone number property value for database pages",
+        "properties": {
+          "phone_number": {
+            "type": ["string", "null"]
+          }
+        },
+        "required": ["phone_number"]
+      },
+      "relationPropertyValue": {
+        "type": "object",
+        "description": "Relation property value for database pages",
+        "properties": {
+          "relation": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "description": "ID of the related page"
+                }
+              },
+              "required": ["id"]
+            }
+          }
+        },
+        "required": ["relation"]
+      },
+      "filesPropertyValue": {
+        "type": "object",
+        "description": "Files property value for database pages",
+        "properties": {
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the file"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["external"],
+                  "description": "File type (external for URL-based files)"
+                },
+                "external": {
+                  "type": "object",
+                  "properties": {
+                    "url": {
+                      "type": "string",
+                      "description": "URL of the external file"
+                    }
+                  },
+                  "required": ["url"]
+                }
+              },
+              "required": ["name", "type", "external"]
+            }
+          }
+        },
+        "required": ["files"]
+      },
       "paragraphBlockRequest": {
         "type": "object",
         "properties": {
@@ -1748,65 +2003,37 @@
                 "type": "object",
                 "properties": {
                   "properties": {
-                    "description": "The property values to update for the page. The keys are the names or IDs of the property and the values are property values. If a page property ID is not included, then it is not changed.",
+                    "description": "The property values to update for the page. The keys are the names or IDs of the property and the values are property values. If a page property ID is not included, then it is not changed. Common property types: title, rich_text, number, select, multi_select, status, date, people, checkbox, url, email, phone_number, relation, files.",
                     "type": "object",
-                    "properties": {
-                      "title": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "text": {
-                              "type": "object",
-                              "properties": {
-                                "content": {
-                                  "type": "string"
-                                },
-                                "link": {
-                                  "type": [
-                                    "object",
-                                    "null"
-                                  ],
-                                  "properties": {
-                                    "url": {
-                                      "type": "string"
-                                    }
-                                  },
-                                  "required": [
-                                    "url"
-                                  ]
-                                }
-                              },
-                              "additionalProperties": false,
-                              "required": [
-                                "content"
-                              ]
-                            },
-                            "type": {
-                              "enum": [
-                                "text"
-                              ],
-                              "type": "string"
-                            }
-                          },
-                          "additionalProperties": false,
-                          "required": [
-                            "text"
-                          ]
-                        },
-                        "maxItems": 100
-                      },
-                      "type": {
-                        "enum": [
-                          "title"
-                        ],
-                        "type": "string"
-                      }
+                    "additionalProperties": {
+                      "oneOf": [
+                        { "$ref": "#/components/schemas/titlePropertyValue" },
+                        { "$ref": "#/components/schemas/richTextPropertyValue" },
+                        { "$ref": "#/components/schemas/numberPropertyValue" },
+                        { "$ref": "#/components/schemas/selectPropertyValue" },
+                        { "$ref": "#/components/schemas/multiSelectPropertyValue" },
+                        { "$ref": "#/components/schemas/statusPropertyValue" },
+                        { "$ref": "#/components/schemas/datePropertyValue" },
+                        { "$ref": "#/components/schemas/peoplePropertyValue" },
+                        { "$ref": "#/components/schemas/checkboxPropertyValue" },
+                        { "$ref": "#/components/schemas/urlPropertyValue" },
+                        { "$ref": "#/components/schemas/emailPropertyValue" },
+                        { "$ref": "#/components/schemas/phonePropertyValue" },
+                        { "$ref": "#/components/schemas/relationPropertyValue" },
+                        { "$ref": "#/components/schemas/filesPropertyValue" }
+                      ]
                     },
-                    "additionalProperties": false,
-                    "required": [
-                      "title"
-                    ]
+                    "example": {
+                      "Name": {
+                        "title": [{ "text": { "content": "Updated Title" }, "annotations": { "bold": true } }]
+                      },
+                      "Status": {
+                        "status": { "name": "In Progress" }
+                      },
+                      "Due Date": {
+                        "date": { "start": "2025-02-01", "end": "2025-02-15" }
+                      }
+                    }
                   },
                   "in_trash": {
                     "type": "boolean",
@@ -1929,41 +2156,51 @@
                   },
                   "properties": {
                     "type": "object",
-                    "properties": {
-                      "title": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "required": [
-                            "text"
-                          ],
-                          "properties": {
-                            "text": {
-                              "type": "object",
-                              "required": [
-                                "content"
-                              ],
-                              "properties": {
-                                "content": {
-                                  "type": "string"
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "maxItems": 100
-                      },
-                      "type": {
-                        "enum": [
-                          "title"
-                        ],
-                        "type": "string"
-                      }
+                    "description": "Property values for the page. Keys are property names or IDs. For database pages, use property values matching the database schema. Common property types: title (required for all pages), rich_text, number, select, multi_select, status, date, people, checkbox, url, email, phone_number, relation, files.",
+                    "additionalProperties": {
+                      "oneOf": [
+                        { "$ref": "#/components/schemas/titlePropertyValue" },
+                        { "$ref": "#/components/schemas/richTextPropertyValue" },
+                        { "$ref": "#/components/schemas/numberPropertyValue" },
+                        { "$ref": "#/components/schemas/selectPropertyValue" },
+                        { "$ref": "#/components/schemas/multiSelectPropertyValue" },
+                        { "$ref": "#/components/schemas/statusPropertyValue" },
+                        { "$ref": "#/components/schemas/datePropertyValue" },
+                        { "$ref": "#/components/schemas/peoplePropertyValue" },
+                        { "$ref": "#/components/schemas/checkboxPropertyValue" },
+                        { "$ref": "#/components/schemas/urlPropertyValue" },
+                        { "$ref": "#/components/schemas/emailPropertyValue" },
+                        { "$ref": "#/components/schemas/phonePropertyValue" },
+                        { "$ref": "#/components/schemas/relationPropertyValue" },
+                        { "$ref": "#/components/schemas/filesPropertyValue" }
+                      ]
                     },
-                    "additionalProperties": false,
-                    "required": [
-                      "title"
-                    ]
+                    "example": {
+                      "Name": {
+                        "title": [{ "text": { "content": "My Page Title" } }]
+                      },
+                      "Description": {
+                        "rich_text": [{ "text": { "content": "Some description" }, "annotations": { "bold": true } }]
+                      },
+                      "Priority": {
+                        "select": { "name": "High" }
+                      },
+                      "Tags": {
+                        "multi_select": [{ "name": "Frontend" }, { "name": "Urgent" }]
+                      },
+                      "Due Date": {
+                        "date": { "start": "2025-01-15" }
+                      },
+                      "Count": {
+                        "number": 42
+                      },
+                      "Done": {
+                        "checkbox": true
+                      },
+                      "Website": {
+                        "url": "https://example.com"
+                      }
+                    }
                   },
                   "children": {
                     "type": "array",
