@@ -38,6 +38,63 @@
       }
     },
     "schemas": {
+      "annotationsRequest": {
+        "type": "object",
+        "description": "Styling information for rich text",
+        "properties": {
+          "bold": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the text is bolded"
+          },
+          "italic": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the text is italicized"
+          },
+          "strikethrough": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the text has strikethrough"
+          },
+          "underline": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the text is underlined"
+          },
+          "code": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the text is code style"
+          },
+          "color": {
+            "type": "string",
+            "enum": [
+              "default",
+              "gray",
+              "brown",
+              "orange",
+              "yellow",
+              "green",
+              "blue",
+              "purple",
+              "pink",
+              "red",
+              "gray_background",
+              "brown_background",
+              "orange_background",
+              "yellow_background",
+              "green_background",
+              "blue_background",
+              "purple_background",
+              "pink_background",
+              "red_background"
+            ],
+            "default": "default",
+            "description": "Color of the text"
+          }
+        }
+      },
       "richTextRequest": {
         "type": "object",
         "required": [
@@ -51,7 +108,8 @@
             ],
             "properties": {
               "content": {
-                "type": "string"
+                "type": "string",
+                "description": "The text content. Maximum 2000 characters."
               },
               "link": {
                 "type": [
@@ -60,24 +118,27 @@
                 ],
                 "properties": {
                   "url": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "The URL the text links to"
                   }
                 },
                 "required": [
                   "url"
                 ]
               }
-            },
-            "additionalProperties": false
+            }
           },
           "type": {
             "enum": [
               "text"
             ],
             "type": "string"
+          },
+          "annotations": {
+            "$ref": "#/components/schemas/annotationsRequest",
+            "description": "Styling information for the text"
           }
-        },
-        "additionalProperties": false
+        }
       },
       "pageIdParentRequest": {
         "type": "object",
@@ -206,9 +267,13 @@
                   "$ref": "#/components/schemas/richTextRequest"
                 },
                 "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
               }
             },
-            "additionalProperties": false,
             "required": [
               "rich_text"
             ]
@@ -219,8 +284,115 @@
             ],
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
+      },
+      "heading1BlockRequest": {
+        "type": "object",
+        "properties": {
+          "heading_1": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              },
+              "is_toggleable": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether the heading can be toggled to show/hide its children"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "heading_1"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "heading2BlockRequest": {
+        "type": "object",
+        "properties": {
+          "heading_2": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              },
+              "is_toggleable": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether the heading can be toggled to show/hide its children"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "heading_2"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "heading3BlockRequest": {
+        "type": "object",
+        "properties": {
+          "heading_3": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              },
+              "is_toggleable": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether the heading can be toggled to show/hide its children"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "heading_3"
+            ],
+            "type": "string"
+          }
+        }
       },
       "bulletedListItemBlockRequest": {
         "type": "object",
@@ -234,9 +406,13 @@
                   "$ref": "#/components/schemas/richTextRequest"
                 },
                 "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
               }
             },
-            "additionalProperties": false,
             "required": [
               "rich_text"
             ]
@@ -247,8 +423,233 @@
             ],
             "type": "string"
           }
-        },
-        "additionalProperties": false
+        }
+      },
+      "numberedListItemBlockRequest": {
+        "type": "object",
+        "properties": {
+          "numbered_list_item": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "numbered_list_item"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "toDoBlockRequest": {
+        "type": "object",
+        "properties": {
+          "to_do": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "checked": {
+                "type": "boolean",
+                "default": false,
+                "description": "Whether the to-do item is checked"
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "to_do"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "toggleBlockRequest": {
+        "type": "object",
+        "properties": {
+          "toggle": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "toggle"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "codeBlockRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100,
+                "description": "The code content"
+              },
+              "caption": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100,
+                "description": "Caption for the code block"
+              },
+              "language": {
+                "type": "string",
+                "enum": ["abap", "arduino", "bash", "basic", "c", "clojure", "coffeescript", "cpp", "csharp", "css", "dart", "diff", "docker", "elixir", "elm", "erlang", "flow", "fortran", "fsharp", "gherkin", "glsl", "go", "graphql", "groovy", "haskell", "html", "java", "javascript", "json", "julia", "kotlin", "latex", "less", "lisp", "livescript", "lua", "makefile", "markdown", "markup", "matlab", "mermaid", "nix", "objective-c", "ocaml", "pascal", "perl", "php", "plain text", "powershell", "prolog", "protobuf", "python", "r", "reason", "ruby", "rust", "sass", "scala", "scheme", "scss", "shell", "sql", "swift", "typescript", "vb.net", "verilog", "vhdl", "visual basic", "webassembly", "xml", "yaml", "java/c/c++/c#"],
+                "default": "plain text",
+                "description": "Programming language for syntax highlighting"
+              }
+            },
+            "required": [
+              "rich_text",
+              "language"
+            ]
+          },
+          "type": {
+            "enum": [
+              "code"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "quoteBlockRequest": {
+        "type": "object",
+        "properties": {
+          "quote": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "quote"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "calloutBlockRequest": {
+        "type": "object",
+        "properties": {
+          "callout": {
+            "type": "object",
+            "properties": {
+              "rich_text": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/richTextRequest"
+                },
+                "maxItems": 100
+              },
+              "icon": {
+                "type": "object",
+                "properties": {
+                  "emoji": {
+                    "type": "string",
+                    "description": "Emoji character for the callout icon"
+                  }
+                }
+              },
+              "color": {
+                "type": "string",
+                "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"],
+                "default": "default"
+              }
+            },
+            "required": [
+              "rich_text"
+            ]
+          },
+          "type": {
+            "enum": [
+              "callout"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "dividerBlockRequest": {
+        "type": "object",
+        "properties": {
+          "divider": {
+            "type": "object",
+            "properties": {}
+          },
+          "type": {
+            "enum": [
+              "divider"
+            ],
+            "type": "string"
+          }
+        }
       },
       "blockObjectRequest": {
         "anyOf": [
@@ -256,7 +657,37 @@
             "$ref": "#/components/schemas/paragraphBlockRequest"
           },
           {
+            "$ref": "#/components/schemas/heading1BlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/heading2BlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/heading3BlockRequest"
+          },
+          {
             "$ref": "#/components/schemas/bulletedListItemBlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/numberedListItemBlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/toDoBlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/toggleBlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/codeBlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/quoteBlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/calloutBlockRequest"
+          },
+          {
+            "$ref": "#/components/schemas/dividerBlockRequest"
           }
         ]
       }
@@ -897,16 +1328,226 @@
             "application/json": {
               "schema": {
                 "type": "object",
+                "description": "Update a block by specifying the block type and its properties. Supported types: paragraph, heading_1, heading_2, heading_3, bulleted_list_item, numbered_list_item, to_do, toggle, code, quote, callout.",
                 "properties": {
-                  "type": {
+                  "paragraph": {
                     "type": "object",
-                    "description": "The [block object `type`](ref:block#block-object-keys) value with the properties to be updated. Currently only `text` (for supported block types) and `checked` (for `to_do` blocks) fields can be updated.",
-                    "properties": {}
+                    "description": "Update paragraph block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      }
+                    }
+                  },
+                  "heading_1": {
+                    "type": "object",
+                    "description": "Update heading_1 block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      },
+                      "is_toggleable": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "heading_2": {
+                    "type": "object",
+                    "description": "Update heading_2 block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      },
+                      "is_toggleable": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "heading_3": {
+                    "type": "object",
+                    "description": "Update heading_3 block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      },
+                      "is_toggleable": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "bulleted_list_item": {
+                    "type": "object",
+                    "description": "Update bulleted_list_item block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      }
+                    }
+                  },
+                  "numbered_list_item": {
+                    "type": "object",
+                    "description": "Update numbered_list_item block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      }
+                    }
+                  },
+                  "to_do": {
+                    "type": "object",
+                    "description": "Update to_do block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "checked": {
+                        "type": "boolean",
+                        "description": "Whether the to-do item is checked"
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      }
+                    }
+                  },
+                  "toggle": {
+                    "type": "object",
+                    "description": "Update toggle block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      }
+                    }
+                  },
+                  "code": {
+                    "type": "object",
+                    "description": "Update code block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "caption": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "language": {
+                        "type": "string",
+                        "enum": ["abap", "arduino", "bash", "basic", "c", "clojure", "coffeescript", "cpp", "csharp", "css", "dart", "diff", "docker", "elixir", "elm", "erlang", "flow", "fortran", "fsharp", "gherkin", "glsl", "go", "graphql", "groovy", "haskell", "html", "java", "javascript", "json", "julia", "kotlin", "latex", "less", "lisp", "livescript", "lua", "makefile", "markdown", "markup", "matlab", "mermaid", "nix", "objective-c", "ocaml", "pascal", "perl", "php", "plain text", "powershell", "prolog", "protobuf", "python", "r", "reason", "ruby", "rust", "sass", "scala", "scheme", "scss", "shell", "sql", "swift", "typescript", "vb.net", "verilog", "vhdl", "visual basic", "webassembly", "xml", "yaml", "java/c/c++/c#"]
+                      }
+                    }
+                  },
+                  "quote": {
+                    "type": "object",
+                    "description": "Update quote block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      }
+                    }
+                  },
+                  "callout": {
+                    "type": "object",
+                    "description": "Update callout block content",
+                    "properties": {
+                      "rich_text": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "#/components/schemas/richTextRequest"
+                        },
+                        "maxItems": 100
+                      },
+                      "icon": {
+                        "type": "object",
+                        "properties": {
+                          "emoji": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      "color": {
+                        "type": "string",
+                        "enum": ["default", "gray", "brown", "orange", "yellow", "green", "blue", "purple", "pink", "red", "gray_background", "brown_background", "orange_background", "yellow_background", "green_background", "blue_background", "purple_background", "pink_background", "red_background"]
+                      }
+                    }
                   },
                   "archived": {
                     "type": "boolean",
-                    "description": "Set to true to archive (delete) a block. Set to false to un-archive (restore) a block.",
-                    "default": true
+                    "description": "Set to true to archive (delete) a block. Set to false to un-archive (restore) a block."
                   }
                 }
               }
